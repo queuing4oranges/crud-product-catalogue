@@ -1,9 +1,11 @@
 <!-- checking if there are errors,then looping and displaying them -->
-<?php if (!empty($errors)) ?>
-<ul><?php foreach ($errors as $error) : ?>
-        <li><?php echo $error; ?></li>
-    <?php endforeach; ?>
-</ul>
+<?php if (!empty($errors)) : ?>
+    <ul><?php foreach ($errors as $error) : ?>
+            <li><?php echo $error; ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
 
 <select name="product" id="">
     <option value="book">BOOK</option>

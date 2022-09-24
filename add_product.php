@@ -3,8 +3,6 @@
 require 'includes/connection.php';
 require 'includes/product.php';
 
-$errors = []; //creating empty array to hold error messages
-
 $sku = '';    //initializing variable up here, bc form is still empty
 $title = '';
 $price = '';
