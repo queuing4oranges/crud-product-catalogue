@@ -5,7 +5,7 @@ require 'includes/connection.php';
 $sql = "SELECT *
         FROM products
         ORDER BY id;";
-
+$conn = getConnect();
 $results = mysqli_query($conn, $sql);
 
 if ($results === false) {

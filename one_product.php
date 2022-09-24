@@ -1,19 +1,18 @@
 <?php
 
 require 'includes/connection.php';
+require 'includes/product.php';
 
-$sql = "SELECT *
-        FROM products
-        WHERE id = " . $_GET['id'];      //getting the id from the querystring ($_GET vardumps the string in the url as assoc. array) - by typing ?id=2 after the url, we get product w/ id 2
+$conn = getConnect();
 
 
-$results = mysqli_query($conn, $sql);
+if (isset($_GET['id'])) {     //here calling the fct we made separately
 
-if ($results === false) {
-    echo mysqli_error($conn);
+    $product = getProduct($conn, $_GET['id']);
 } else {
-    $product = mysqli_fetch_assoc($results); //instead of fetching all, we're doing one article only here
+    $product = null;
 }
+
 ?>
 
 <?php require 'includes/header.php'; ?>
@@ -24,15 +23,13 @@ if ($results === false) {
 
 <?php else : ?>
 
-    <div>
-        <h2>One Product</h2>
-        <article>
-            <input type="checkbox">
-            <p><?= $product['sku']; ?></p>
-            <p><?= $product['title']; ?></p>
-        </article>
-    </div>
+    <article>
 
-<?php endif ?>
+        <p><?= $product['sku']; ?></p>
+        <p><?= $product['title']; ?></p>
+    </article>
+
+
+<?php endif; ?>
 
 <?php require 'includes/footer.php'; ?>
