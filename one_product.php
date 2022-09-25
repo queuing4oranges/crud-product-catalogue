@@ -27,6 +27,8 @@ if (isset($_GET['id'])) {     //here calling the fct we made separately
 
         <p><?= $product['sku']; ?></p>
         <p><?= $product['title']; ?></p>
+        <p><?= $product['price']; ?></p>
+        <form method="post" action="delete_product.php?id=<?= $product['id']; ?>"><button>Delete Product</button>
     </article>
 
 

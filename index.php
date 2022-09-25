@@ -33,6 +33,10 @@ if ($results === false) {
                     <p><?= $product['title']; ?></p>
                     <p><?= $product['price'] ?></p>
                     <p><a href="edit_product.php?id=<?= $product['id']; ?>">Edit Product</a></p>
+                    <!-- <p><a href="delete_product.php?id=<?= $product['id']; ?>">Delete Product</a></p>    
+                    we should be using post method - therefore instead of a link, we'll make a form! -->
+                    <form method="post" action="delete_product.php?id=<?= $product['id']; ?>"><button>Delete Product</button>
+                    </form>
                 </article>
             </div>
         <?php endforeach; ?>

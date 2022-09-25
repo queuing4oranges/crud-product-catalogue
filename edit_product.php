@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {     //here calling the fct we made separately
         $title = $product['title'];
         $price = $product['price'];
     } else {
-        die("Article not found.");
+        die("Product not found.");
     }
 } else {
 
