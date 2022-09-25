@@ -2,6 +2,7 @@
 
 require 'includes/connection.php';
 require 'includes/product.php';
+require 'includes/url.php';
 
 $conn = getConnect();
 
@@ -46,13 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (mysqli_stmt_execute($stmt)) {
 
-                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-                    $protocol = 'https';
-                } else {
-                    $protocol = 'http';
-                }
-                header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/index.php");
-                exit;
+                redirectUrl("/index.php");
             } else {
                 echo mysqli_stmt_error($stmt);
             }

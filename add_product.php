@@ -2,6 +2,7 @@
 
 require 'includes/connection.php';
 require 'includes/product.php';
+require 'includes/url.php';
 
 $sku = '';    //initializing variable up here, bc form is still empty
 $title = '';
@@ -45,13 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //instead of relative, we should be using absolute url, to have it work in older browsers. it needs to container server name and protocol:
                 //first check if server is using http or https:
 
-                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-                    $protocol = 'https';
-                } else {
-                    $protocol = 'http';
-                } //now redirect to an absolute url:
-                header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/index.php");
-                exit;
+                redirectUrl("/index.php");      //to the same site: redirect("/add_product.php?=$id")
             } else {
                 echo mysqli_stmt_error($stmt);              //if it's false, we display error
             }
