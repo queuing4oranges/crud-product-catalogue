@@ -31,6 +31,8 @@ if ($results === false) {
                     <!-- make each product name into anchor tag so we can link to a single one dynamicalle -> id from databank, so we access it just like the other props -->
                     <p><a href="one_product.php?id=<?= $product['id']; ?>"><?= $product['sku']; ?></a></p>
                     <p><?= $product['title']; ?></p>
+                    <p><?= $product['price'] ?></p>
+                    <p><a href="edit_product.php?id=<?= $product['id']; ?>">Edit Product</a></p>
                 </article>
             </div>
         <?php endforeach; ?>

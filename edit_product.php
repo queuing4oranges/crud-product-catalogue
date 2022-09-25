@@ -12,6 +12,7 @@ if (isset($_GET['id'])) {     //here calling the fct we made separately
 
     if ($product) {
 
+        $id = $product['id'];
         $sku = $product['sku'];
         $title = $product['title'];
         $price = $product['price'];
@@ -33,9 +34,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = validateProduct($sku, $title, $price);
 
     if (empty($errors)) {
-        die("Form is valid");
+
+        $sql = "UPDATE products SET sku=?, title=?, price=? WHERE id=?";
+
+        $stmt = mysqli_prepare($conn, $sql);
+
+        if ($stmt === false) {
+            echo mysqli_error($conn);
+        } else {
+            mysqli_stmt_bind_param($stmt, "ssdi", $sku, $title, $price, $id);
+
+            if (mysqli_stmt_execute($stmt)) {
+
+                if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+                    $protocol = 'https';
+                } else {
+                    $protocol = 'http';
+                }
+                header("Location: $protocol://" . $_SERVER['HTTP_HOST'] . "/index.php");
+                exit;
+            } else {
+                echo mysqli_stmt_error($stmt);
+            }
+        }
     }
 }
+
 
 
 
