@@ -1,7 +1,6 @@
-<!-- checking if there are errors,then looping and displaying them -->
-<?php if (!empty($errors)) : ?>
-    <ul><?php foreach ($errors as $error) : ?>
-            <li><?php echo $error; ?></li>
+<?php if (!empty($product->errors)) : ?>
+    <ul><?php foreach ($product->errors as $error) : ?>
+            <li><?php $error; ?></li>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
@@ -16,18 +15,17 @@
 <form method="post">
     <div>
         <label for="sku">SKU</label>
-        <!-- value="-> value remains in form -->
-        <input type="text" id="sku" name="sku" value="<?= $sku; ?>" />
+        <input id="sku" name="sku" value="<?= ($product->sku); ?>" />
     </div>
 
     <div>
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" value="<?= $title; ?>" />
+        <input id="title" name="title" value="<?= ($product->title); ?>" />
     </div>
 
     <div>
         <label for="price">Price</label>
-        <input type="text" id="price" name="price" value="<?= $price; ?>" />
+        <input id="price" name="price" value="<?= ($product->price); ?>" />
     </div>
 
     <input type="submit" value="submit" />

@@ -1,14 +1,17 @@
 <?php
 
-require 'includes/connection.php';
-require 'includes/product.php';
+require 'classes/Database.php';
+require 'classes/Product.php';
 
-$conn = getConnect();
+
+// $conn = getConnect();
+$db = new Database();
+$conn = $db->getConnection();
 
 
 if (isset($_GET['id'])) {     //here calling the fct we made separately
 
-    $product = getProduct($conn, $_GET['id']);
+    $product = Product::getProduct($conn, $_GET['id']);
 } else {
     $product = null;
 }
@@ -18,18 +21,20 @@ if (isset($_GET['id'])) {     //here calling the fct we made separately
 <?php require 'includes/header.php'; ?>
 
 
-<?php if ($product === null) : ?>
-    <p>Product not found.</p>
-
-<?php else : ?>
+<?php if ($product) : ?>
 
     <article>
-
-        <p><?= $product['sku']; ?></p>
-        <p><?= $product['title']; ?></p>
-        <p><?= $product['price']; ?></p>
-        <form method="post" action="delete_product.php?id=<?= $product['id']; ?>"><button>Delete Product</button>
+        <!-- accessed like array: $product['sku']-->
+        <p><?= htmlspecialchars($product->sku); ?></p>
+        <p><?= htmlspecialchars($product->title); ?></p>
+        <p><?= htmlspecialchars($product->price); ?></p>
+        <form method="post" action="delete_product.php?id=<?= $product->id; ?>"><button>Delete Product</button>
     </article>
+
+
+<?php else : ?>
+    <p>Product not found.</p>
+
 
 
 <?php endif; ?>

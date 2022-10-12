@@ -42,60 +42,6 @@
 
 
 
-// if (
-//     isset($_POST['sku'])
-//     && isset($_POST['title'])
-//     && isset($_POST['price'])
-// ) {
-//     $sku = $_POST['sku'];
-//     $title = $_POST['title'];
-//     $price = $_POST['price'];
-
-//     $stmt = $connection->prepare("INSERT INTO products (sku, title, price) VALUES ( ?, ?, ? )");
-
-//     $stmt->bind_param('dsd', $sku, $title, $price);
-
-//     if ($stmt->execute()) {
-//         $response['error'] = false;
-//         $response['message'] = "Product added successfully.";
-//         $stmt->close();
-//     } else {
-//         $response['error'] = true;
-//         $response['message'] = "Failed to insert product into database.";
-//     }
-// } else {
-//     $response['error'] = true;
-//     $response['message'] = "Please provide the parameters to insert the product.";
-// }
-
-// class Product
-// {
-//     public $title = null;
-//     public $sku = null;
-//     public $price = null;
-
-//     //here some insert function!
-//     public function show(){
-//         this->title = $title
-//     }
-
-//     public function create(){
-
-//     }
-//     // public function sayHello()
-//     // {
-//     //     echo ("hello");
-//     // }
-// }
-
-// $item = new Product();
-
-// var_dump($item);
-
-//wie W3 - dann im html teil for each schleife?
-
-// ...new Product
-
 #########################################
 
 // CREATE TABLE products (

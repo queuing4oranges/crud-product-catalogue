@@ -1,23 +1,19 @@
 <?php
 
-require 'includes/connection.php';
-require 'includes/product.php';
+require 'classes/Database.php';
+require 'classes/Product.php';
 require 'includes/url.php';
 
-$conn = getConnect();
+$db = new Database();
+$conn = $db->getConnection();
 
 
 if (isset($_GET['id'])) {     //here calling the fct we made separately
     //getting product from DB
-    $product = getProduct($conn, $_GET['id']);
+    $product = Product::getProduct($conn, $_GET['id']);
 
-    if ($product) {
+    if (!$product) {
 
-        $id = $product['id'];
-        $sku = $product['sku'];
-        $title = $product['title'];
-        $price = $product['price'];
-    } else {
         die("Product not found.");
     }
 } else {
@@ -27,33 +23,19 @@ if (isset($_GET['id'])) {     //here calling the fct we made separately
 
 //validating inputs
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //if form is submitted, set values to the variables
-    $sku = $_POST['sku'];
-    $title = $_POST['title'];
-    $price = $_POST['price'];
 
-    $errors = validateProduct($sku, $title, $price);
+    //assign values coming from the form to the properties:
+    $product->sku = $_POST['sku'];
+    $product->title = $_POST['title'];
+    $product->price = $_POST['price'];
 
-    if (empty($errors)) {
 
-        $sql = "UPDATE products SET sku=?, title=?, price=? WHERE id=?";
-
-        $stmt = mysqli_prepare($conn, $sql);
-
-        if ($stmt === false) {
-            echo mysqli_error($conn);
-        } else {
-            mysqli_stmt_bind_param($stmt, "ssdi", $sku, $title, $price, $id);
-
-            if (mysqli_stmt_execute($stmt)) {
-
-                redirectUrl("/index.php");
-            } else {
-                echo mysqli_stmt_error($stmt);
-            }
-        }
+    if ($product->updateProduct($conn)) {
+        //previous: redirect('index.php')
+        header("location:index.php");
     }
 }
+
 
 
 
