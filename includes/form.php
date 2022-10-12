@@ -6,11 +6,6 @@
 <?php endif; ?>
 
 
-<select name="product" id="">
-    <option value="book">BOOK</option>
-    <option value="dvd">DVD</option>
-    <option value="furniture">FURNITURE</option>
-</select>
 
 <form method="post">
     <div>
@@ -29,4 +24,33 @@
     </div>
 
     <input type="submit" value="submit" />
+
+    <select name="product" id="">
+        <option value="book">BOOK</option>
+        <option value="dvd">DVD</option>
+        <option value="furniture">FURNITURE</option>
+    </select>
+
+    <div>
+        <label for="size">Size</label>
+        <input id="size" name="size" value="<?= ($product->size); ?>" />
+    </div>
+
+    <div>
+        <label for="weight">Weight</label>
+        <input id="weight" name="weight" value="<?= ($product->weight); ?>" />
+    </div>
+
+    <div>
+        <label for="height">Height</label>
+        <input id="height" name="height" value="<?= ($product->height); ?>" />
+    </div>
+    <div>
+        <label for="width">Width</label>
+        <input id="width" name="width" value="<?= ($product->width); ?>" />
+    </div>
+    <div>
+        <label for="length">Length</label>
+        <input id="length" name="length" value="<?= ($product->length); ?>" />
+    </div>
 </form>

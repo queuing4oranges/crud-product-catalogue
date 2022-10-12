@@ -7,26 +7,15 @@ $db = new Database();
 $conn = $db->getConnection();
 
 
-if (isset($_GET['id'])) {
-    $product = Product::getProduct($conn, $_GET['id']);
+if (isset($_POST['mass-delete-btn'])) {
+    $all_id = $_POST['product_delete_id'];
 
-    if (!$product) {
-
-        die("Product not found.");
-    }
-} else {
-
-    die("ID not valid. Product not found.");
-}
-
-//make sure post method isnt used until called:
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-    if (empty($errors)) {
-
-        if ($product->deleteProduct($conn)) {
-            header("location:index.php");
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        foreach ($all_id as $product) {
+            // echo $product;
+            $my_product = Product::getProduct($conn, $product);
+            $my_product->deleteProduct($conn);
         }
+        header("location:index.php");
     }
 }

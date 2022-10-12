@@ -6,6 +6,11 @@ class Product
     public $sku;
     public $title;
     public $price;
+    public $weight;
+    public $size;
+    public $length;
+    public $width;
+    public $height;
 
     public $errors = [];
 
@@ -41,37 +46,6 @@ class Product
         }
     }
 
-    public function updateProduct($conn)
-    {
-        if ($this->validateProduct()) { //calling method on this obj - if validate is true (= errors empty), do this:
-
-
-            $sql =  "UPDATE products
-                    SET    sku= :sku, 
-                        title= :title, 
-                        price= :price
-                    WHERE  id= :id";
-
-            $stmt = $conn->prepare($sql);
-
-            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
-            $stmt->bindValue(':sku', $this->sku, PDO::PARAM_INT);
-            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
-            // $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
-
-            //let's assume the price can be null:
-            if ($this->price == '') {
-                $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
-            } else {
-                $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
-            }
-
-            return $stmt->execute();
-        } else {
-            return false;
-        }
-    }
-
     public function deleteProduct($conn)
     {
         $sql = "DELETE FROM products 
@@ -83,18 +57,23 @@ class Product
 
         return $stmt->execute();
     }
-
     public function addProduct($conn)
     {
-        if ($this->validateProduct($this->sku, $this->title, $this->price)) {
-            $sql =  "INSERT INTO products (sku, title, price)
-                    VALUES (:sku, :title, :price )";
+
+        if ($this->validate()) {
+            $sql =  "INSERT INTO products (sku, title, price, size, weight, height, width, length)
+                    VALUES (:sku, :title, :price, :size, :weight, :height, :width, :length )";
 
             $stmt = $conn->prepare($sql);
 
             $stmt->bindValue(':sku', $this->sku, PDO::PARAM_INT);
             $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
             $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
+            $stmt->bindValue(':size',   $this->size, PDO::PARAM_INT);
+            $stmt->bindValue(':weight', $this->weight, PDO::PARAM_INT);
+            $stmt->bindValue(':height', $this->height, PDO::PARAM_INT);
+            $stmt->bindValue(':width',  $this->width, PDO::PARAM_INT);
+            $stmt->bindValue(':length', $this->length, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
                 $this->id = $conn->lastInsertId();
@@ -104,9 +83,29 @@ class Product
             return false;
         }
     }
+    // public function addProduct($conn)
+    // {
+    //     if ($this->validateProduct($this->sku, $this->title, $this->price)) {
+    //         $sql =  "INSERT INTO products (sku, title, price)
+    //                 VALUES (:sku, :title, :price )";
+
+    //         $stmt = $conn->prepare($sql);
+
+    //         $stmt->bindValue(':sku', $this->sku, PDO::PARAM_INT);
+    //         $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+    //         $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
+
+    //         if ($stmt->execute()) {
+    //             $this->id = $conn->lastInsertId();
+    //             return true;
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     //validate user inputs
-    protected function validateProduct()
+    protected function validate()
     {
 
         if ($this->sku  == '') {
@@ -126,19 +125,19 @@ class Product
 }
 
 
-class Book extends Product
-{
-    public $weight;
-}
+// class Book extends Product
+// {
+//     public $weight;
+// }
 
-class Dvd extends Product
-{
-    public $size;
-}
+// class Dvd extends Product
+// {
+//     public $size;
+// }
 
-class Furniture extends Product
-{
-    public $height;
-    public $width;
-    public $length;
-}
+// class Furniture extends Product
+// {
+//     public $height;
+//     public $width;
+//     public $length;
+// }

@@ -5,10 +5,6 @@ require 'classes/Database.php';
 require 'includes/url.php';
 
 
-// $sku = '';    //initializing variable up here, bc form is still empty
-// $title = '';
-// $price = ''; //instead of variables - create new article obj - form says undefined variable!!
-
 $product = new Product();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,6 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product->sku = $_POST['sku'];
     $product->title = $_POST['title'];
     $product->price = $_POST['price'];
+    $product->weight = $_POST['weight'];
+    $product->size = $_POST['size'];
+    $product->height = $_POST['height'];
+    $product->width = $_POST['width'];
+    $product->length = $_POST['length'];
 
     if ($product->addProduct($conn)) {
 
@@ -27,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-<?php require 'includes/header.php'; ?>
+
 <h2>Add Product</h2>
+<button>SAVE</button>
+<form action="index.php"><button>CANCEL</button></form>
 
 <?php require 'includes/form.php'; ?>
-<?php require 'includes/footer.php'; ?>
