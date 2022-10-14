@@ -1,11 +1,12 @@
 <?php if (!empty($product->errors)) : ?>
     <ul><?php foreach ($product->errors as $error) : ?>
-            <li><?php $error; ?></li>
+            <li><?php echo $error; ?></li>
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
 
-
+<link rel="stylesheet" href="../stylesheet.css">
+<script src="switcher.js" defer></script>
 
 <form method="post">
     <div>
@@ -25,31 +26,28 @@
 
     <input type="submit" value="submit" />
 
-    <select name="product" id="">
+    <select name="product" id="switch" onChange="switchType(this.value);">
+        <option value="">Product Type</option>
         <option value="book">BOOK</option>
         <option value="dvd">DVD</option>
         <option value="furniture">FURNITURE</option>
     </select>
 
-    <div>
+    <div class="option-field" id="dvd_item">
         <label for="size">Size</label>
         <input id="size" name="size" value="<?= ($product->size); ?>" />
     </div>
 
-    <div>
+    <div class="option-field" id="book_item">
         <label for="weight">Weight</label>
         <input id="weight" name="weight" value="<?= ($product->weight); ?>" />
     </div>
 
-    <div>
+    <div class="option-field" id="furniture_item">
         <label for="height">Height</label>
         <input id="height" name="height" value="<?= ($product->height); ?>" />
-    </div>
-    <div>
         <label for="width">Width</label>
         <input id="width" name="width" value="<?= ($product->width); ?>" />
-    </div>
-    <div>
         <label for="length">Length</label>
         <input id="length" name="length" value="<?= ($product->length); ?>" />
     </div>

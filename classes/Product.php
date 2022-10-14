@@ -57,6 +57,25 @@ class Product
 
         return $stmt->execute();
     }
+
+    protected function validate()
+    {
+
+        if ($this->sku  == '') {
+            $this->errors[] = 'Please provide the SKU.';
+        }
+
+        if ($this->title == '') {
+            $this->errors[] = 'Please provide the title.';
+        }
+
+        if ($this->price == '') {
+            $this->errors[] = 'Please provide the price.';
+        }
+
+        return empty($this->errors);
+    }
+
     public function addProduct($conn)
     {
 
@@ -105,39 +124,5 @@ class Product
     // }
 
     //validate user inputs
-    protected function validate()
-    {
 
-        if ($this->sku  == '') {
-            $this->errors[] = 'Please provide the SKU.';
-        }
-
-        if ($this->title == '') {
-            $this->errors[] = 'Please provide the title.';
-        }
-
-        if ($this->price == '') {
-            $this->errors[] = 'Please provide the price.';
-        }
-
-        return empty($this->errors);
-    }
 }
-
-
-// class Book extends Product
-// {
-//     public $weight;
-// }
-
-// class Dvd extends Product
-// {
-//     public $size;
-// }
-
-// class Furniture extends Product
-// {
-//     public $height;
-//     public $width;
-//     public $length;
-// }

@@ -1,3 +1,8 @@
 article {
     background-color: rgb(216, 238, 216);
 }
+
+.option-field {
+    background-color: lightgreen;
+    display: none;
+}

@@ -4,7 +4,6 @@ require 'classes/Product.php';
 require 'classes/Database.php';
 require 'includes/url.php';
 
-
 $product = new Product();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -29,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<h2>Add Product</h2>
-<button>SAVE</button>
-<form action="index.php"><button>CANCEL</button></form>
 
+
+<h2>Add Product</h2>
+<!-- <button>SAVE</button> -->
+<form action="index.php"><button>CANCEL</button></form>
 <?php require 'includes/form.php'; ?>
