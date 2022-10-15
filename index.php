@@ -29,13 +29,41 @@ $products = Product::showAll($conn);
 
 
             <?php foreach ($products as $product) : ?>
-                <div>
+                <div class="product">
 
                     <input type="checkbox" name="product_delete_id[]" value="<?= $product['id']; ?>">
 
+                    <p>SKU: <?= $product['sku']; ?></p>
+                    <p>Title: <?= $product['title']; ?></p>
+                    <p>Price: <?= $product['price']; ?></p>
 
-                    <p><?= $product['title']; ?></p>
-                    <p><?= $product['price']; ?></p>
+                    <?php if (!empty($product['size'])) : ?>
+                        <p>Size:<?= $product['size']; ?></p>
+                    <?php else : '' ?>
+                    <?php endif ?>
+
+                    <?php if (!empty($product['weight'])) : ?>
+                        <p>Weight:<?= $product['weight']; ?></p>
+                    <?php else : '' ?>
+                    <?php endif ?>
+
+                    <div class="dimensions">
+                        <?php if (!empty($product['height'])) : ?>
+                            <p>Height:<?= $product['height']; ?></p>
+                        <?php else : '' ?>
+                        <?php endif ?>
+
+                        <?php if (!empty($product['width'])) : ?>
+                            <p>Width:<?= $product['width']; ?></p>
+                        <?php else : '' ?>
+                        <?php endif ?>
+
+                        <?php if (!empty($product['length'])) : ?>
+                            <p>Length:<?= $product['length']; ?></p>
+                        <?php else : '' ?>
+                        <?php endif ?>
+
+                    </div>
 
                 </div>
             <?php endforeach; ?>

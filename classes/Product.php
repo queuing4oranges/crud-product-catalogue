@@ -89,10 +89,10 @@ class Product
             $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
             $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
             $stmt->bindValue(':size',   $this->size, PDO::PARAM_INT);
-            $stmt->bindValue(':weight', $this->weight, PDO::PARAM_INT);
-            $stmt->bindValue(':height', $this->height, PDO::PARAM_INT);
-            $stmt->bindValue(':width',  $this->width, PDO::PARAM_INT);
-            $stmt->bindValue(':length', $this->length, PDO::PARAM_INT);
+            $stmt->bindValue(':weight', $this->weight, PDO::PARAM_STR);
+            $stmt->bindValue(':height', $this->height, PDO::PARAM_STR);
+            $stmt->bindValue(':width',  $this->width, PDO::PARAM_STR);
+            $stmt->bindValue(':length', $this->length, PDO::PARAM_STR);
 
             if ($stmt->execute()) {
                 $this->id = $conn->lastInsertId();
