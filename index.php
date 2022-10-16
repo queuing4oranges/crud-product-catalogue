@@ -38,28 +38,30 @@ $products = Product::showAll($conn);
                     <p>Price: <?= $product['price']; ?></p>
 
                     <?php if (!empty($product['size'])) : ?>
-                        <p>Size:<?= $product['size']; ?></p>
+                        <p>Size: <?= $product['size']; ?> MB</p>
                     <?php else : '' ?>
                     <?php endif ?>
 
                     <?php if (!empty($product['weight'])) : ?>
-                        <p>Weight:<?= $product['weight']; ?></p>
+                        <p>Weight: <?= $product['weight']; ?> KG</p>
                     <?php else : '' ?>
                     <?php endif ?>
 
                     <div class="dimensions">
+
                         <?php if (!empty($product['height'])) : ?>
-                            <p>Height:<?= $product['height']; ?></p>
+                            <p>Dimension: </p>
+                            <p><?= $product['height']; ?> x </p>
                         <?php else : '' ?>
                         <?php endif ?>
 
                         <?php if (!empty($product['width'])) : ?>
-                            <p>Width:<?= $product['width']; ?></p>
+                            <p><?= $product['width']; ?> x </p>
                         <?php else : '' ?>
                         <?php endif ?>
 
                         <?php if (!empty($product['length'])) : ?>
-                            <p>Length:<?= $product['length']; ?></p>
+                            <p><?= $product['length']; ?></p>
                         <?php else : '' ?>
                         <?php endif ?>
 
