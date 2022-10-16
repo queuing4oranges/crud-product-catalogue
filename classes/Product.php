@@ -4,7 +4,7 @@ class Product
 {
     public $id;
     public $sku;
-    public $title;
+    public $name;
     public $price;
     public $weight;
     public $size;
@@ -65,13 +65,14 @@ class Product
             $this->errors[] = 'Please provide the SKU.';
         }
 
-        if ($this->title == '') {
-            $this->errors[] = 'Please provide the title.';
+        if ($this->name == '') {
+            $this->errors[] = 'Please provide the name.';
         }
 
         if ($this->price == '') {
             $this->errors[] = 'Please provide the price.';
         }
+
 
         return empty($this->errors);
     }
@@ -80,13 +81,13 @@ class Product
     {
 
         if ($this->validate()) {
-            $sql =  "INSERT INTO products (sku, title, price, size, weight, height, width, length)
-                    VALUES (:sku, :title, :price, :size, :weight, :height, :width, :length )";
+            $sql =  "INSERT INTO products (sku, name, price, size, weight, height, width, length)
+                    VALUES (:sku, :name, :price, :size, :weight, :height, :width, :length )";
 
             $stmt = $conn->prepare($sql);
 
             $stmt->bindValue(':sku', $this->sku, PDO::PARAM_INT);
-            $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
+            $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
             $stmt->bindValue(':size',   $this->size, PDO::PARAM_INT);
             $stmt->bindValue(':weight', $this->weight, PDO::PARAM_STR);

@@ -34,7 +34,7 @@ $products = Product::showAll($conn);
                     <input type="checkbox" class="delete-checkbox" name="product_delete_id[]" value="<?= $product['id']; ?>">
 
                     <p>SKU: <?= $product['sku']; ?></p>
-                    <p>Title: <?= $product['title']; ?></p>
+                    <p>Name: <?= $product['name']; ?></p>
                     <p>Price: <?= $product['price']; ?></p>
 
                     <?php if (!empty($product['size'])) : ?>

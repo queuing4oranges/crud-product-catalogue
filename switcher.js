@@ -8,12 +8,12 @@ const map = {
 function switchType(value) {
     console.log("change happen")
     let array = document.querySelectorAll(".option-field"); 
+
     array.forEach((node) => (node.setAttribute("style", "display: none")));
-    document.getElementById(map[value]).style.display = "block";
+    element = document.getElementById(map[value]);
+    element.style.display = "block";
+
 }
-
-
-
 
 
 

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo ("Item with this SKU already exists.");
     } else {
 
-        $product->title = $_POST['title'];
+        $product->name = $_POST['name'];
         $product->price = $_POST['price'];
         $product->weight = $_POST['weight'];
         $product->size = $_POST['size'];

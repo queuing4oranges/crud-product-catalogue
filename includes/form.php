@@ -8,15 +8,15 @@
 <link rel="stylesheet" href="../stylesheet.css">
 <script src="switcher.js" defer></script>
 
-<form id="product_form" method="post">
+<form name="product_form" id="product_form" method="post">
     <div>
         <label for="sku">SKU</label>
         <input id="sku" name="sku" value="<?= ($product->sku); ?>" />
     </div>
 
     <div>
-        <label for="name">Title</label>
-        <input id="name" name="title" value="<?= ($product->title); ?>" />
+        <label for="name">Name</label>
+        <input id="name" name="name" value="<?= ($product->name); ?>" />
     </div>
 
     <div>
