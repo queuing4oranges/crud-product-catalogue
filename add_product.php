@@ -36,7 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<h2>Add Product</h2>
-<form action="index.php"><button>Cancel</button></form>
-<?php require 'includes/form.php'; ?>
+<div class="product__add-container">
+    <div class="product__add">
+        <h2 class="add__title">Add Product</h2>
+        <form class="cancel__btn_form" action="index.php"><button class="cancel-btn">Cancel</button></form>
+        <?php require 'includes/form.php'; ?>
+    </div>
+</div>

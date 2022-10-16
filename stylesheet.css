@@ -1,12 +1,135 @@
-article {
-    background-color: rgb(216, 238, 216);
+/*
+Color Palette #4261
+lightgrey   #eff0ef
+darkgrey    #2b3016
+pumpkin     #f89345
+brown       #ac3501
+black-ish   #121215
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+html {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif, Arial, Helvetica, sans-serif;
+    background-color:#eff0ef ;
+    color: #ac3501;
+
 }
 
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
 .option-field {
-    background-color: lightgreen;
     display: none;
 }
 
-.product {
-    border: red solid 1px;
+.product__cont {
+    background-color: #f89345;
+    border:rgb(172, 53, 1) 1px solid;
+    border-radius: 3px;
+    height: 250px;
+    overflow: hidden;   
+    color: #eff0ef;
+    box-shadow: 6px 6px 5px 0px rgba(250, 160, 150, 0.85);
 }
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.product p {
+    margin: 0;
+    padding: 0;
+}
+
+.product__list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+}
+
+/* button styling */
+.cancel-btn,
+.add-btn, 
+.delete-btn,
+.input-btn {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    box-shadow: rgba(213, 217, 217, 0.247) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #ac3501;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Amazon Ember", sans-serif;
+    font-size: 13px;
+    line-height: 29px;
+    padding: 0 10px 0 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: 150px;
+}
+.cancel-btn:hover,
+.add-btn:hover,
+.delete-btn:hover,
+.input-btn:hover {
+    background-color: #2b3016;
+    color: #eff0ef ;
+}
+
+hr {
+    background-color: #ac3501;
+    height: 3px;
+    max-width: 100%;
+    border-style: none;
+    border-radius: 3px;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn__container {
+    display: flex;
+    align-items: center;
+}
+
+.btn__form {
+    margin: 0 20px;
+}
+
+/*add product*/
+.product__add-container {
+    width: 40%;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+    border: #2b3016 solid 2px;
+    background-color: #f89345;
+    height: fit-content;
+    
+}
+
+.product__form {
+    display: flex;
+    flex-direction: column; 
+}
+
