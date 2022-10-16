@@ -102,27 +102,4 @@ class Product
             return false;
         }
     }
-    // public function addProduct($conn)
-    // {
-    //     if ($this->validateProduct($this->sku, $this->title, $this->price)) {
-    //         $sql =  "INSERT INTO products (sku, title, price)
-    //                 VALUES (:sku, :title, :price )";
-
-    //         $stmt = $conn->prepare($sql);
-
-    //         $stmt->bindValue(':sku', $this->sku, PDO::PARAM_INT);
-    //         $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
-    //         $stmt->bindValue(':price', $this->price, PDO::PARAM_INT);
-
-    //         if ($stmt->execute()) {
-    //             $this->id = $conn->lastInsertId();
-    //             return true;
-    //         }
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
-    //validate user inputs
-
 }

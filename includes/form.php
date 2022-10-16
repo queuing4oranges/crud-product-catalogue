@@ -8,15 +8,15 @@
 <link rel="stylesheet" href="../stylesheet.css">
 <script src="switcher.js" defer></script>
 
-<form method="post">
+<form id="product_form" method="post">
     <div>
         <label for="sku">SKU</label>
         <input id="sku" name="sku" value="<?= ($product->sku); ?>" />
     </div>
 
     <div>
-        <label for="title">Title</label>
-        <input id="title" name="title" value="<?= ($product->title); ?>" />
+        <label for="name">Title</label>
+        <input id="name" name="title" value="<?= ($product->title); ?>" />
     </div>
 
     <div>
@@ -24,9 +24,7 @@
         <input id="price" name="price" value="<?= ($product->price); ?>" />
     </div>
 
-    <input type="submit" value="submit" />
-
-    <select name="product" id="switch" onChange="switchType(this.value);">
+    <select name="product" id="productType" onChange="switchType(this.value);">
         <option value="">Product Type</option>
         <option value="book">BOOK</option>
         <option value="dvd">DVD</option>
@@ -51,4 +49,6 @@
         <label for="length">Length</label>
         <input id="length" name="length" value="<?= ($product->length); ?>" />
     </div>
+
+    <input type="submit" value="Save" />
 </form>

@@ -12,25 +12,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = $db->getConnection();
 
     $product->sku = $_POST['sku'];
-    $product->title = $_POST['title'];
-    $product->price = $_POST['price'];
-    $product->weight = $_POST['weight'];
-    $product->size = $_POST['size'];
-    $product->height = $_POST['height'];
-    $product->width = $_POST['width'];
-    $product->length = $_POST['length'];
 
-    if ($product->addProduct($conn)) {
+    $stmt = $conn->prepare("SELECT * FROM products WHERE sku= ?");
+    $stmt->execute([$product->sku]);
+    $result = $stmt->rowCount();
+    if ($result > 0) {
+        echo ("Item with this SKU already exists.");
+    } else {
 
-        header("location:index.php");
+        $product->title = $_POST['title'];
+        $product->price = $_POST['price'];
+        $product->weight = $_POST['weight'];
+        $product->size = $_POST['size'];
+        $product->height = $_POST['height'];
+        $product->width = $_POST['width'];
+        $product->length = $_POST['length'];
+
+        if ($product->addProduct($conn)) {
+
+            header("location:index.php");
+        }
     }
 }
 
 ?>
 
-
-
 <h2>Add Product</h2>
-<!-- <button>SAVE</button> -->
-<form action="index.php"><button>CANCEL</button></form>
+<form action="index.php"><button>Cancel</button></form>
 <?php require 'includes/form.php'; ?>

@@ -31,7 +31,7 @@ $products = Product::showAll($conn);
             <?php foreach ($products as $product) : ?>
                 <div class="product">
 
-                    <input type="checkbox" name="product_delete_id[]" value="<?= $product['id']; ?>">
+                    <input type="checkbox" class="delete-checkbox" name="product_delete_id[]" value="<?= $product['id']; ?>">
 
                     <p>SKU: <?= $product['sku']; ?></p>
                     <p>Title: <?= $product['title']; ?></p>
